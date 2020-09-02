@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AskQue</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+  </head>
+<body>
+  <header>
+    <nav id="header-nav" class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+           <a href="index.html" class="pull-left visible-md visible-lg">
+            <div id="logo-img"></div>
+          </a> 
+          <div class="search visible-lg visible-md">
+               <input type="text" name="" class="search-txt" placeholder="Type To Search"/>
+                  <a class="search-btn">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </a>
+              </div>
+       
+
+
+         <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        
+        
+        <div id="collapsable-nav" class="collapse navbar-collapse">
+           <ul id="nav-list" class="nav navbar-nav navbar-right">
+           <!--  <li id="navHomeButton" class="visible-xs active">
+              <a href="index.html">
+                <span class="glyphicon glyphicon-home"></span> Home</a>
+            </li> -->
+            <li id="navMenuButton">
+              <a href="home">
+                <span class="glyphicon glyphicon-home"></span><br class="hidden-xs">Home</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-link"></span><br class="hidden-xs"> Channels</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-envelope"></span><br class="hidden-xs"> Notification</a>
+            </li>
+             <li>
+              <a href="#" onclick="$dc.openForm();">
+                <span class="glyphicon glyphicon-log-in"></span><br class="hidden-xs"> Login</a>
+            </li>
+            <li id="ask">
+              <!-- <a href="tel:410-602-5008"> -->
+                <!-- <button id="btn" class="hidden-xs" onclick="$dc.openFormque();">Ask Question</button> -->
+            </li>
+          </ul><!-- #nav-list -->
+        </div><!-- .collapse .navbar-collapse -->
+      </div><!-- .container -->
+    </nav><!-- #header-nav -->
+  </header>
+
+ 
+
+ <div id="call-btn" class="visible-xs">
+   <!--  <a class="btn" href="tel:410-602-5008">
+    <span class="glyphicon glyphicon-earphone"></span>
+    410-602-5008
+    </a> -->
+    <button id="btn">Ask Question</button> 
+  </div> 
+  
+<!--Edit login form-->
+<form class="box" id="loginform" action="" method="post">
+  <h1>Login</h1>
+  <input type="text" name="" placeholder="Username" required>
+  <input type="password" name="" placeholder="Password" required>
+  <input type="submit" name="" value="Login">
+  <a href="#"><h5>Lost your Password?</h5></a>
+  <a href="#"><h4>Sign Up/Register</h4></a>
+  <button type="button" class="btncancel" onclick="$dc.closeForm();">Close</button>
+</form>
+
+<!--End login form-->
+
+<!--EDIT QUESTION ASKIG FORM-->
+<form action="index.html" method="post" class="box1">
+        <h1> Ask Question </h1>
+        <fieldset>
+          <label for="AddQues">Add Question:</label>
+          <input type="textarea" id="AddQues" name="AddQues">
+         </fieldset>
+         <fieldset>
+          <label for="Field">Choose the Particular Field:</label>
+          <select id="Field" name="Field">
+              <option value="Education">Education</option>
+              <option value="art">Art</option>
+              <option value="Sports">Sports</option>
+              <option value="Journalism">Journalism</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Health">Health</option>
+              <option value="Nature">Nature</option>
+              <option value="Literature">Literature</option>
+              <option value="Others">Others</option>
+          </select>
+        </fieldset>
+        <button type="submit">Add</button>
+        <button type="button" onclick="$dc.closeFormque();">Close</button>
+</form>
+
+<!--eND QUE ASKING FORM-->
+  
+ <div id="foranswer" class="container" >
+      <button id="btnans">Answer</button>
+      <div id="score" class="dropdown">
+        <h4 class="dropbtn glyphicon glyphicon-chevron-down visible-xs">Your Status</h4>
+         <h4 class="hidden-xs">Your Status</h4>
+        <div class="dropdown-content">
+          <div class="ranking">Rank:<span id="rankval"></span></div><br>
+          <div class="pointing">Points:<span id="pointval"></span></div><br>
+          <div class="queanswered">Questions Answered:<span id="ansval"></span></div>
+        </div>
+      </div>
+      <div id="channels" class="dropdown">
+        <h4 class="dropbtn glyphicon glyphicon-chevron-down visible-xs">Your Channels</h4>
+        <h4 class="hidden-xs">Your Channels</h4>
+        <div id=listofc class="dropdown-content">
+          <ul>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- <div id="main-content" class="container"></div> -->
+<div id="questions">
+ <% if(quest.length>0)  { %>
+  <%  quest.forEach(ques=>{ %>
+    <div  class="allques">
+      <h4 class="hques">Question</h4>
+      <h3 class=eques><%= ques.que %></h3>
+      <a><span id="likecount" class="glyphicon glyphicon-thumbs-up"><br>0</span></a>
+      <a class =singlequest href="/question/<%= ques.field %>/<%= ques._id %>"><button id="btnans2">Answer</button></a>
+      <%if(quest.answer!=""){%>
+      <h3 class="ansques">Answer:  <%= ques.answer%></h3>
+      <%}%>
+    </div>
+   <% })%>
+ <% }else{  %>
+    <h3>No blogs to show</h3>
+<%  } %>
+</div>
+  
+
+  <footer class="panel-footer">
+    <div class="container">
+      <div class="row">
+       <!--  <section id="hours" class="col-sm-4">
+          <span>Hours:</span><br>
+          Sun-Thurs: 11:15am - 10:00pm<br>
+          Fri: 11:15am - 2:30pm<br>
+          Saturday Closed
+          <hr class="visible-xs">
+        </section> -->
+        <section id="address" class="col-sm-6">
+          <span>Contact:</span><br>
+         <!--  7105 Reisterstown Road<br>
+          Baltimore, MD 21215
+          <p>* Delivery area within 3-4 miles, with minimum order of $20 plus $3 charge for all deliveries.</p>
+          <hr class="visible-xs"> -->
+           <a class="btn" href="tel:+919415492561">
+              <span class="glyphicon glyphicon-earphone"></span>
+              +919415492561    
+           </a> 
+        </section>
+        <section id="testimonials" class="col-sm-6">
+          <p>"A site/platform where you can get anwers to your queries and dobts.! Being better requires your curosity !"</p>
+          <p>"Knowledge increases from sharing so answer if you can. We will give you credit!!"</p>
+        </section>
+      </div>
+      <div class="text-center">&copy; Copyright AskQue 2020</div>
+    </div>
+  </footer>
+
+  <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="/jquery-2.1.4.min.js"></script>
+  <script src="/bootstrap.min.js"></script>
+  <script src="/ajax-utils.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
